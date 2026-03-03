@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "prototype-transformation",
+  "description": "Marketplace for the prototype-transformation plugin, enabling Claude Code to delegate tasks to OpenAI Codex CLI",
+  "owner": {
+    "name": "songuu",
+    "url": "https://github.com/songuu"
+  },
+  "plugins": [
+    {
+      "name": "prototype-transformation",
+      "source": "./plugins/prototype-transformation",
+      "description": "Delegate prompts to OpenAI Codex CLI for prototype transformation",
+      "version": "1.1.0",
+      "category": "development",
+      "homepage": "https://github.com/songuu/prototype-transformation",
+      "tags": [
+        "skill",
+        "prototype-transformation",
+        "automation"
+      ]
+    }
+  ]
+}

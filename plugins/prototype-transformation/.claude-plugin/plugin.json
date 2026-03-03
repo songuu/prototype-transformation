@@ -1,8 +1,22 @@
 {
   "name": "prototype-transformation",
-  "description": "Prototype transformation plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "description": "前端文档流水线：将墨刀原型图 + 原始需求文字，经过原型解析→Figma挂载→接口集成→代码审计四个阶段，逐步增强为可直接指导开发的完整前端文档。",
   "author": {
-  "name": "songuu"
-  }
+    "name": "songuu",
+    "url": "https://github.com/songuu"
+  },
+  "homepage": "https://github.com/songuu/prototype-transformation",
+  "repository": "https://github.com/songuu/prototype-transformation",
+  "license": "MIT",
+  "keywords": [
+    "prototype",
+    "frontend",
+    "documentation",
+    "figma",
+    "code-audit",
+    "requirements",
+    "workflow"
+  ],
+  "skills": "./skills/"
 }

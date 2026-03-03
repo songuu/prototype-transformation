@@ -1,0 +1,203 @@
+{
+  "skill_name": "doc-pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我分析一下这个需求，我有原型图（附图）。需求是：做一个用户管理页面，支持创建、编辑、删除用户，以及按角色筛选。",
+      "expected_output": "触发阶段2，读取 references/阶段2-原型解析.md，委派 Opus 分析原型图，产出初始文档，包含：页面清单、功能点、字段定义、状态枚举、交互逻辑、空状态/异常状态、疑问点、主动补全内容。调用 Codex xhigh 挑刺后最终输出确认提示并停止等待。",
+      "assertions": [
+        {
+          "text": "是否触发了阶段2而不是直接开始编写代码",
+          "type": "boolean"
+        },
+        {
+          "text": "是否先读取了 references/阶段2-原型解析.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否委派了 Opus 子代理而不是主 CLI 自行分析",
+          "type": "boolean"
+        },
+        {
+          "text": "初始文档是否包含空状态/异常状态章节",
+          "type": "boolean"
+        },
+        {
+          "text": "是否包含主动补全内容（原型未体现的内容）",
+          "type": "boolean"
+        },
+        {
+          "text": "是否调用了 Codex xhigh 进行文档挑刺",
+          "type": "boolean"
+        },
+        {
+          "text": "产物文件名是否为 requirements-v1-初始文档.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否以确认提示结尾并等待人工确认，而不是自动进入阶段3",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我已经有初始文档了，现在需要把 Figma 链接挂上去。列表页：https://figma.com/design/abc?node-id=1-1，创建弹窗：https://figma.com/design/abc?node-id=1-2",
+      "expected_output": "触发阶段3，读取 references/阶段3-Figma挂载.md，主 CLI 直接执行（不委派 Opus），在每个页面/弹窗章节顶部插入 Figma 链接（带 ?m=dev 参数），文档末尾追加索引表，输出确认提示后停止。",
+      "assertions": [
+        {
+          "text": "是否识别为阶段3而不是其他阶段",
+          "type": "boolean"
+        },
+        {
+          "text": "是否先读取了 references/阶段3-Figma挂载.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否主 CLI 直接执行而不是委派 Opus",
+          "type": "boolean"
+        },
+        {
+          "text": "是否在页面章节顶部正确插入了 Figma 链接",
+          "type": "boolean"
+        },
+        {
+          "text": "是否使用了 ?m=dev 参数",
+          "type": "boolean"
+        },
+        {
+          "text": "是否追加了 Figma 索引表",
+          "type": "boolean"
+        },
+        {
+          "text": "产物文件名是否为 requirements-v2-中间文档.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否没有修改任何功能描述内容",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "现在帮我把接口文档和需求文档对应起来。接口文档如下：GET /api/users（获取用户列表，支持分页）、POST /api/users（创建用户）、DELETE /api/users/:id（删除用户）。但是没有编辑用户的接口。",
+      "expected_output": "触发阶段4，读取 references/阶段4-接口集成.md，委派 Opus 整理接口清单，绑定有接口的功能点（类型A），标注无接口的编辑功能（类型C）并提供 Mock 代码（双方案），调用 Codex xhigh 审查一致性后产出文档，输出确认提示。",
+      "assertions": [
+        {
+          "text": "是否先读取了 references/阶段4-接口集成.md 和 references/Codex调用协议.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否委派了 Opus 子代理而不是主 CLI 自行处理",
+          "type": "boolean"
+        },
+        {
+          "text": "是否为缺失接口的功能点（编辑用户）提供了 Mock 代码",
+          "type": "boolean"
+        },
+        {
+          "text": "Mock 代码是否有两个方案（前端Mock + 等待后端）",
+          "type": "boolean"
+        },
+        {
+          "text": "是否追加了接口绑定总览附录",
+          "type": "boolean"
+        },
+        {
+          "text": "是否调用了 Codex xhigh 进行一致性审查",
+          "type": "boolean"
+        },
+        {
+          "text": "产物文件名是否为 requirements-v3-接口文档.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否以确认提示结尾并提供了跳过阶段5的选项",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我审计一下代码和需求文档的偏差，代码在 src/pages/users/",
+      "expected_output": "触发阶段5，读取 references/阶段5-代码审计.md 和 references/Codex调用协议.md，主 CLI 直接调用 Codex high，按模块分批（每批≤5文件），进行需求偏差+Bug双维度检测，产出结构化审计报告，输出确认提示后停止，不自动修复。",
+      "assertions": [
+        {
+          "text": "是否先读取了 references/阶段5-代码审计.md 和 references/Codex调用协议.md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否主 CLI 直接调用 Codex 而不是委派 Opus",
+          "type": "boolean"
+        },
+        {
+          "text": "是否同时包含需求偏差检测和Bug检测两个维度",
+          "type": "boolean"
+        },
+        {
+          "text": "是否传入了完整代码文件而不是 git diff（首次审计）",
+          "type": "boolean"
+        },
+        {
+          "text": "是否按模块分批且每批不超过5个文件",
+          "type": "boolean"
+        },
+        {
+          "text": "审计报告是否包含汇总统计表",
+          "type": "boolean"
+        },
+        {
+          "text": "产物文件名是否为 audit-report-[功能名]-[日期].md",
+          "type": "boolean"
+        },
+        {
+          "text": "是否以确认提示结尾，提示用户修复后可回复「复审」",
+          "type": "boolean"
+        },
+        {
+          "text": "是否没有自动开始修复代码",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "帮我整理一下这个需求。需求是：做一个数据看板页面，支持图表展示和数据导出。",
+      "expected_output": "检测到用户只提供了文字没有图片，提示用户上传墨刀导出原型图后再开始阶段2。不应直接开始分析或编写代码。",
+      "assertions": [
+        {
+          "text": "是否识别出缺少原型图",
+          "type": "boolean"
+        },
+        {
+          "text": "是否提示用户上传墨刀导出图片",
+          "type": "boolean"
+        },
+        {
+          "text": "是否没有直接开始编写代码或分析",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "修复完了，帮我复审一下",
+      "expected_output": "识别为阶段5复审场景，resume 之前的 Codex 会话，传入 git diff（而非完整文件），确认修复是否正确并检查是否引入新问题。",
+      "assertions": [
+        {
+          "text": "是否识别为复审而不是首次审计",
+          "type": "boolean"
+        },
+        {
+          "text": "是否使用 git diff 而非完整文件",
+          "type": "boolean"
+        },
+        {
+          "text": "是否 resume 了之前的 Codex 会话而非开启新会话",
+          "type": "boolean"
+        }
+      ]
+    }
+  ]
+}

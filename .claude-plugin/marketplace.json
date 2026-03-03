@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "prototype-transformation",
-  "description": "Marketplace for the prototype-transformation plugin, enabling Claude Code to delegate tasks to OpenAI Codex CLI",
+  "description": "前端文档流水线插件市场 — 将墨刀原型 + 需求文字逐阶段转化为完整前端开发文档",
   "owner": {
     "name": "songuu",
     "url": "https://github.com/songuu"
@@ -10,13 +10,17 @@
     {
       "name": "prototype-transformation",
       "source": "./plugins/prototype-transformation",
-      "description": "Delegate prompts to OpenAI Codex CLI for prototype transformation",
+      "description": "四阶段前端文档流水线：原型解析→Figma挂载→接口集成→代码审计，每阶段人工确认后推进，支持 Opus 子代理分析和 Codex 质量审查",
       "version": "1.1.0",
       "category": "development",
       "homepage": "https://github.com/songuu/prototype-transformation",
       "tags": [
         "skill",
-        "prototype-transformation",
+        "prototype",
+        "frontend",
+        "documentation",
+        "figma",
+        "code-audit",
         "automation"
       ]
     }

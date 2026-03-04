@@ -1,7 +1,7 @@
 {
   "name": "prototype-transformation",
   "version": "1.1.0",
-  "description": "前端文档流水线：将墨刀原型图 + 原始需求文字，经过原型解析→Figma挂载→接口集成→代码审计四个阶段，逐步增强为可直接指导开发的完整前端文档。",
+  "description": "前端文档流水线：将原型图 + 原始需求文字，经过原型解析→Figma挂载→接口集成→代码审计四个阶段，逐步增强为可直接指导开发的完整前端文档。",
   "author": {
     "name": "songuu",
     "url": "https://github.com/songuu"

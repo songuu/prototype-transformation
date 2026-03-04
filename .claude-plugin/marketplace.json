@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "prototype-transformation",
-  "description": "前端文档流水线插件市场 — 将墨刀原型 + 需求文字逐阶段转化为完整前端开发文档",
+  "description": "前端文档流水线插件市场 — 将原型 + 需求文字逐阶段转化为完整前端开发文档",
   "owner": {
     "name": "songuu",
     "url": "https://github.com/songuu"
